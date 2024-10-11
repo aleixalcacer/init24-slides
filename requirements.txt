@@ -1,2 +1,2 @@
 notebook
-archetypes
+archetypes @ git+https://github.com/aleixalcacer/archetypes.git@dev
