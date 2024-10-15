@@ -7,6 +7,7 @@ date-format: full
 # institute: "Institut de Noves Tecnologies de la Imatge"
 format:
     revealjs: 
+        html-math-method: katex
         smaller: true
         scrollable: true
         slide-number: true
@@ -14,7 +15,7 @@ format:
         toc-depth: 1
         toc: true
         preview-links: auto
-        footer: "Archetypal Analysis"
+        footer: "Archetypal Analysis: Characterizing data by \"extremes\""
 ---
 
 # Introduction
@@ -57,8 +58,114 @@ Therefore, a new wide range of emotions can be obtained by combining the archety
 
 # Archetypal Analysis in Machine Learning
 
-## Definition
+## Motivation of work
 
+![Number of publications containing the "archetypal analysis" keyword over the years. Data has been collected from Google Scholar.](static/introduction/trend.png)
+
+
+## Machine Learning
+
+![Machine learning overview](static/introduction/ml-mindmap.png){.r-stretch}
+
+## Archetypal Analysis (AA)
+
+- Unsupervised machine learning technique introduced by Cutler and Breiman in 1994.
+- Identifies extreme points that are representative of the underlying patterns or structures within the data set.
+- Represents each data point as a mixture of these archetypes.
+
+::: {.columns}
+
+::: {.column width=50%}
+
+![Dataset](static/aa/dataset.png){.r-stretch}
+:::
+
+::: {.column width=50%}
+![Archetypes](static/aa/dataset-archetypes.png){.r-stretch}
+:::
+
+:::
+
+---
+
+### Formal Definition
+
+Let $\mathfrak{X}=\{\bm{x}^{(1)}, \bm{x}^{(2)}, \ldots, \bm{x}^{(N)}\}$ be a dataset where each $\bm{x}^{(n)} \in \mathbb{R}^M$.
+
+#### Objective
+
+- Find some archetypes $\mathfrak{Z} = \{\bm{z}^{(1)}, \bm{z}^{(2)}, \ldots, \bm{z}^{(K)}\}$ where each $\bm{z}^{(k)} \in \mathbb{R}^M$, which are convex combinations of the data points in $\mathfrak{X}$.
+
+- Simultaneously, each data point $\bm{x}^{(n)}$ is also approximated as a convex combination of these archetypes $\mathfrak{Z}$.
+
+---
+
+#### Archetypes as convex combinations of the data points
+
+Expanding previous definition, each archetype $\bm{Z}_k$, i.e. $\bm{z}^{(k)}$, can be represented as
+convex combinations of the data points:
+$$ \bm{Z}_k = \sum_{n=1}^{N} \bm{{B}}_{k,n} \bm{X}_n $$
+
+subject to $\|{\bm{{B}}_k}\|_1 = 1$ and $\bm{{B}}_{k,n} \in [0, 1]$.
+
+![Archetypes as convex combinations of the data points](static/aa/arch-as-data.png){.r-stretch}
+
+---
+
+#### Data points as convex combinations of the archetypes
+
+Simultaneously, each data point $\bm{X}_n$, i.e. $\bm{x}^{(n)}$, is then approximated as a convex combination of these archetypes
+$$ \bm{X}_n \approx \sum_{k=1}^{K} \bm{{A}}_{n,k} \bm{Z}_k $$
+similarly subject to $\|{\bm{{A}}_n}\|_1 = 1$ and $\bm{{A}}_{n,k} \in [0,1]$.
+
+
+![Data points as convex combinations of the archetypes](static/aa/data-as-arch.png){.r-stretch}
+
+---
+
+#### Matrix notation
+
+This formulation thus involves two matrices of coefficients: $\bm{{B}}$ which defines the archetypes as combinations of the data points, and $\bm{{A}}$ which represents each data point as a mixture of archetypes.
+
+In matrix notation, archetypal analysis can be expressed as:
+$$ \bm{X} \approx \bm{A} \bm{Z} = \bm{A} (\bm{B} \bm{X})$$
+
+---
+
+### Computation
+
+$$ \argmin_{\bm{A}, \bm{B}} \|{\bm{X} - \bm{A}\bm{B}\bm{X}}\|^2_F $$
+where  $\|{\bm{{A}}_n}\|_1 = 1$, $\bm{{A}}_{n,k} \in [0, 1]$, $\|{\bm{B}_k}\|_1 = 1$ and $\bm{{B}}_{k,n} \in [0, 1]$.
+
+**Steps**
+
+1. Initialize archetypes
+2. Loop until error reduction is sufficiently small:
+    1. Optimize $\bm{A}$.
+    2. Update archetypes, i.e. $\bm{Z} = \bm{A}^{-1} \bm{X}$.
+    3. Optimize $\bm{B}$.
+    4. Update archetypes, i.e. $\bm{Z} = \bm{B}\bm{X}$.
+    5. Compute error $\|{\bm{X} - \bm{A}\bm{B}\bm{X}}\|^2_F$.
+
+---
+
+### Selecting the optimal number of archetypes
+
+- Achieving a balance between complexity and elucidation of data patterns is crucial.
+- Archetypes are not necessarily nested; they can change as $K$ increases to better capture data structure.
+- The Elbow Method is a preferred approach due to its simplicity and intuitive visual clarity.
+
+![Archetypal Analysis with different number of archetypes](static/aa/n_archetypes.png){.r-stretch}
+
+---
+
+#### The Elbow Method
+
+1. Plot performance metric (variance explained or reconstruction error) vs. number of archetypes.
+2. Identify the "elbow" where marginal gains diminish.
+3. The elbow indicates the optimal number of archetypes.
+
+![The Elbow Method](static/aa/elbow.png){.r-stretch}
 
 # Archetypal Analysis vs Clustering
 
@@ -220,9 +327,45 @@ plt.show()
 
 # Biarchetypal Analysis
 
-## Definition
+## Biarchetypal Analysis (BiAA)
 
+- Extension of Archetypal Anlaysis introduced by Alcacer et al. in 2024.
 
+-  Whose goal is to identify archetypes simultaneously in both rows and columns of a dataset.
+- It provides a more interpretable alternative to biclustering, focusing on extreme values in data for better insight.
+
+![Biarchetype Analysis framework](static/aa/scheme.png){.r-stretch}
+
+---
+
+### Formal definition
+
+In BiAA, biarchetypes  are defined by ${\bf Z} = {\bf {\bf B}} {\bf X} {\bf {\bf C}}$, i.e. the archetypes are mixture of the data points and variables. There are $k$ archetypes for rows and $c$ for columns.
+
+Simultanously, the data points are approximated as a convex combination of these biarcehtypes, i.e. ${\bf X} \approx {\bf A} {\bf Z} {\bf D}$.
+
+Therefore, the objective function can be expressed as:
+
+$$
+\argmin_{{\bf A}, {\bf B}, {\bf C}, {\bf D}} \left \| {\bf X} - {\bf {\bf A} {\bf B} X {\bf C} {\bf D}}\right \|^2_F
+$$
+where $\|{\bm{{A}}_n}\|_1 = 1$, $\bm{{A}}_{n,k} \in [0, 1]$, $\|{\bm{B}_k}\|_1 = 1$, $\bm{{B}}_{k,n} \in [0, 1]$, $\|{\bm{C}_c}\|_1 = 1$, $\bm{{C}}_{m,c} \in [0, 1]$, $\|{\bm{D}_m}\|_1 = 1$, $\bm{{D}}_{c, m} \in [0, 1]$.
+
+---
+
+### Computation
+
+1. Initialize archetypes
+2. Loop until error reduction is sufficiently small:
+    1. Optimize $\bm{A}$ as in AA.
+    2. Optimize $\bm{D}$ as in AA.
+    2. Update archetypes, i.e. $\bm{Z} = \bm{A}^{-1} \bm{X} \bm{D}^{-1}$.
+    3. Optimize $\bm{B}$ as in AA.
+    4. Optimize $\bm{C}$ as in AA.
+    4. Update archetypes, i.e. $\bm{Z} = \bm{B}\bm{X}\bm{C}$.
+    5. Compute error $\|{\bm{X} - \bm{A}\bm{B}\bm{X}\bm{C}\bm{D}}\|^2_F$.
+
+---
 
 ## Exemple
 
@@ -318,6 +461,52 @@ plt.show()
 ```
 :::
 
+# Python Package
+
+
+## `archetypes` package
+
+::: aside
+[https://archetypes.readthedocs.io/](https://archetypes.readthedocs.io/)
+:::
+
+`archetypes` is a Python package offering a user-friendly and efficient implementation of state-of-the-art techniques for Archetypal Analysis (AA).
+
+- Implements multiple archetype initialization algorithms.
+- Supports a variety of AA algorithms.
+- Provides multiple backends, including numpy, jax, and torch.
+- Runs seamlessly on both CPU and GPU.
+- Integrates diverse visualization tools for enhanced result interpretation.
+- Fully open-source and community-driven project.
+
+---
+
+### Example
+
+```{python}
+#| fig-align: center
+#| echo: true
+
+from archetypes import AA
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Create a dataset with 1000 samples
+generator = np.random.default_rng(123)
+X = generator.uniform(size=(1000, 2))
+
+# Fit an AA model with 3 archetypes
+aa = AA(n_archetypes=4, random_state=123).fit(X)
+
+# Plot the data and the prototypes
+fig, ax = plt.subplots()
+ax.scatter(X[:, 0], X[:, 1], alpha=0.25)
+ax.scatter(aa.archetypes_[:, 0], aa.archetypes_[:, 1], c='red', s=100)
+plt.show()
+```
+
+
+
 # Conclusions
 
 ## Summary
@@ -326,9 +515,7 @@ plt.show()
 - Archetypal Analysis is a technique used to find extreme points (archetypes) in a dataset.
 - The prototypes obtained by Archetypal Analysis often offers more interpretable results than clustering.
 - Biarchetypal Analysis is an extension of Archetypal Analysis that allows to find archetypes in two dimensions simultaneously.
-
-## Future work
-
+- There is a Python package called `archetypes` that makes it easy to compute archetypes.
 
 
 ## Main References
@@ -337,9 +524,5 @@ plt.show()
   - Cutler, A., & Breiman, L. (1994). Archetypal Analysis. Technometrics, 36(4), 338–347. https://doi.org/10.2307/1269949
   - Mørup, M., & Hansen, L. K. (2012). Archetypal analysis for machine learning and data mining. Neurocomputing, 80, 54–63. https://doi.org/10.1016/j.neucom.2011.06.033
 
-
-
-
-## Acknowledgements
 
 ## Thank you ❤️ {.center}
