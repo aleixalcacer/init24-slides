@@ -29,8 +29,89 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -347,6 +428,7 @@ Aleix Alcacer Sales
 <li><a href="#/archetypal-analysis-in-machine-learning" id="/toc-archetypal-analysis-in-machine-learning">Archetypal Analysis in Machine Learning</a></li>
 <li><a href="#/archetypal-analysis-vs-clustering" id="/toc-archetypal-analysis-vs-clustering">Archetypal Analysis vs Clustering</a></li>
 <li><a href="#/biarchetypal-analysis" id="/toc-biarchetypal-analysis">Biarchetypal Analysis</a></li>
+<li><a href="#/python-package" id="/toc-python-package">Python Package</a></li>
 <li><a href="#/conclusions" id="/toc-conclusions">Conclusions</a></li>
 </ul>
 </nav>
@@ -391,9 +473,104 @@ Aleix Alcacer Sales
 <h1>Archetypal Analysis in Machine Learning</h1>
 
 </section>
-<section id="definition" class="slide level2">
-<h2>Definition</h2>
-</section></section>
+<section id="motivation-of-work" class="slide level2">
+<h2>Motivation of work</h2>
+
+<img data-src="static/introduction/trend.png" class="r-stretch quarto-figure-center"><p class="caption">Number of publications containing the “archetypal analysis” keyword over the years. Data has been collected from Google Scholar.</p></section>
+<section id="machine-learning" class="slide level2">
+<h2>Machine Learning</h2>
+
+<img data-src="static/introduction/ml-mindmap.png" class="r-stretch quarto-figure-center"><p class="caption">Machine learning overview</p></section>
+<section id="archetypal-analysis-aa" class="slide level2">
+<h2>Archetypal Analysis (AA)</h2>
+<ul>
+<li>Unsupervised machine learning technique introduced by Cutler and Breiman in 1994.</li>
+<li>Identifies extreme points that are representative of the underlying patterns or structures within the data set.</li>
+<li>Represents each data point as a mixture of these archetypes.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<img data-src="static/aa/dataset.png" class="r-stretch">
+<figcaption>Dataset</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<img data-src="static/aa/dataset-archetypes.png" class="r-stretch">
+<figcaption>Archetypes</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="formal-definition">Formal Definition</h3>
+<p>Let <span class="math inline">\mathfrak{X}=\{\bm{x}^{(1)}, \bm{x}^{(2)}, \ldots, \bm{x}^{(N)}\}</span> be a dataset where each <span class="math inline">\bm{x}^{(n)} \in \mathbb{R}^M</span>.</p>
+<h4 id="objective">Objective</h4>
+<ul>
+<li><p>Find some archetypes <span class="math inline">\mathfrak{Z} = \{\bm{z}^{(1)}, \bm{z}^{(2)}, \ldots, \bm{z}^{(K)}\}</span> where each <span class="math inline">\bm{z}^{(k)} \in \mathbb{R}^M</span>, which are convex combinations of the data points in <span class="math inline">\mathfrak{X}</span>.</p></li>
+<li><p>Simultaneously, each data point <span class="math inline">\bm{x}^{(n)}</span> is also approximated as a convex combination of these archetypes <span class="math inline">\mathfrak{Z}</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h4 id="archetypes-as-convex-combinations-of-the-data-points">Archetypes as convex combinations of the data points</h4>
+<p>Expanding previous definition, each archetype <span class="math inline">\bm{Z}_k</span>, i.e.&nbsp;<span class="math inline">\bm{z}^{(k)}</span>, can be represented as convex combinations of the data points: <span class="math display"> \bm{Z}_k = \sum_{n=1}^{N} \bm{{B}}_{k,n} \bm{X}_n </span></p>
+<p>subject to <span class="math inline">\|{\bm{{B}}_k}\|_1 = 1</span> and <span class="math inline">\bm{{B}}_{k,n} \in [0, 1]</span>.</p>
+
+<img data-src="static/aa/arch-as-data.png" class="r-stretch quarto-figure-center"><p class="caption">Archetypes as convex combinations of the data points</p></section>
+<section class="slide level2">
+
+<h4 id="data-points-as-convex-combinations-of-the-archetypes">Data points as convex combinations of the archetypes</h4>
+<p>Simultaneously, each data point <span class="math inline">\bm{X}_n</span>, i.e.&nbsp;<span class="math inline">\bm{x}^{(n)}</span>, is then approximated as a convex combination of these archetypes <span class="math display"> \bm{X}_n \approx \sum_{k=1}^{K} \bm{{A}}_{n,k} \bm{Z}_k </span> similarly subject to <span class="math inline">\|{\bm{{A}}_n}\|_1 = 1</span> and <span class="math inline">\bm{{A}}_{n,k} \in [0,1]</span>.</p>
+
+<img data-src="static/aa/data-as-arch.png" class="r-stretch quarto-figure-center"><p class="caption">Data points as convex combinations of the archetypes</p></section>
+<section class="slide level2">
+
+<h4 id="matrix-notation">Matrix notation</h4>
+<p>This formulation thus involves two matrices of coefficients: <span class="math inline">\bm{{B}}</span> which defines the archetypes as combinations of the data points, and <span class="math inline">\bm{{A}}</span> which represents each data point as a mixture of archetypes.</p>
+<p>In matrix notation, archetypal analysis can be expressed as: <span class="math display"> \bm{X} \approx \bm{A} \bm{Z} = \bm{A} (\bm{B} \bm{X})</span></p>
+</section>
+<section class="slide level2 scrollable">
+
+<h3 id="computation">Computation</h3>
+<p><span class="math display"> \argmin_{\bm{A}, \bm{B}} \|{\bm{X} - \bm{A}\bm{B}\bm{X}}\|^2_F </span> where <span class="math inline">\|{\bm{{A}}_n}\|_1 = 1</span>, <span class="math inline">\bm{{A}}_{n,k} \in [0, 1]</span>, <span class="math inline">\|{\bm{B}_k}\|_1 = 1</span> and <span class="math inline">\bm{{B}}_{k,n} \in [0, 1]</span>.</p>
+<p><strong>Steps</strong></p>
+<ol type="1">
+<li>Initialize archetypes</li>
+<li>Loop until error reduction is sufficiently small:
+<ol type="1">
+<li>Optimize <span class="math inline">\bm{A}</span>.</li>
+<li>Update archetypes, i.e.&nbsp;<span class="math inline">\bm{Z} = \bm{A}^{-1} \bm{X}</span>.</li>
+<li>Optimize <span class="math inline">\bm{B}</span>.</li>
+<li>Update archetypes, i.e.&nbsp;<span class="math inline">\bm{Z} = \bm{B}\bm{X}</span>.</li>
+<li>Compute error <span class="math inline">\|{\bm{X} - \bm{A}\bm{B}\bm{X}}\|^2_F</span>.</li>
+</ol></li>
+</ol>
+</section>
+<section class="slide level2">
+
+<h3 id="selecting-the-optimal-number-of-archetypes">Selecting the optimal number of archetypes</h3>
+<ul>
+<li>Achieving a balance between complexity and elucidation of data patterns is crucial.</li>
+<li>Archetypes are not necessarily nested; they can change as <span class="math inline">K</span> increases to better capture data structure.</li>
+<li>The Elbow Method is a preferred approach due to its simplicity and intuitive visual clarity.</li>
+</ul>
+
+<img data-src="static/aa/n_archetypes.png" class="r-stretch quarto-figure-center"><p class="caption">Archetypal Analysis with different number of archetypes</p></section>
+<section class="slide level2 scrollable">
+
+<h4 id="the-elbow-method">The Elbow Method</h4>
+<ol type="1">
+<li>Plot performance metric (variance explained or reconstruction error) vs.&nbsp;number of archetypes.</li>
+<li>Identify the “elbow” where marginal gains diminish.</li>
+<li>The elbow indicates the optimal number of archetypes.</li>
+</ol>
+
+<img data-src="static/aa/elbow.png" class="r-stretch quarto-figure-center"><p class="caption">The Elbow Method</p></section></section>
 <section>
 <section id="archetypal-analysis-vs-clustering" class="title-slide slide level1 center">
 <h1>Archetypal Analysis vs Clustering</h1>
@@ -441,7 +618,7 @@ Aleix Alcacer Sales
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="fragment">
-<div id="d2f09200" class="cell" data-execution_count="4">
+<div id="b1753355" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -454,7 +631,7 @@ Aleix Alcacer Sales
 </div>
 </div><div class="column" style="width:50%;">
 <div class="fragment">
-<div id="c915d3c4" class="cell" data-execution_count="5">
+<div id="d797111a" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -472,12 +649,45 @@ Aleix Alcacer Sales
 <h1>Biarchetypal Analysis</h1>
 
 </section>
-<section id="definition-1" class="slide level2">
-<h2>Definition</h2>
+<section id="biarchetypal-analysis-biaa" class="slide level2">
+<h2>Biarchetypal Analysis (BiAA)</h2>
+<ul>
+<li><p>Extension of Archetypal Anlaysis introduced by Alcacer et al.&nbsp;in 2024.</p></li>
+<li><p>Whose goal is to identify archetypes simultaneously in both rows and columns of a dataset.</p></li>
+<li><p>It provides a more interpretable alternative to biclustering, focusing on extreme values in data for better insight.</p></li>
+</ul>
+
+<img data-src="static/aa/scheme.png" class="r-stretch quarto-figure-center"><p class="caption">Biarchetype Analysis framework</p></section>
+<section class="slide level2">
+
+<h3 id="formal-definition-1">Formal definition</h3>
+<p>In BiAA, biarchetypes are defined by <span class="math inline">{\bf Z} = {\bf {\bf B}} {\bf X} {\bf {\bf C}}</span>, i.e.&nbsp;the archetypes are mixture of the data points and variables. There are <span class="math inline">k</span> archetypes for rows and <span class="math inline">c</span> for columns.</p>
+<p>Simultanously, the data points are approximated as a convex combination of these biarcehtypes, i.e.&nbsp;<span class="math inline">{\bf X} \approx {\bf A} {\bf Z} {\bf D}</span>.</p>
+<p>Therefore, the objective function can be expressed as:</p>
+<p><span class="math display">
+\argmin_{{\bf A}, {\bf B}, {\bf C}, {\bf D}} \left \| {\bf X} - {\bf {\bf A} {\bf B} X {\bf C} {\bf D}}\right \|^2_F
+</span> where <span class="math inline">\|{\bm{{A}}_n}\|_1 = 1</span>, <span class="math inline">\bm{{A}}_{n,k} \in [0, 1]</span>, <span class="math inline">\|{\bm{B}_k}\|_1 = 1</span>, <span class="math inline">\bm{{B}}_{k,n} \in [0, 1]</span>, <span class="math inline">\|{\bm{C}_c}\|_1 = 1</span>, <span class="math inline">\bm{{C}}_{m,c} \in [0, 1]</span>, <span class="math inline">\|{\bm{D}_m}\|_1 = 1</span>, <span class="math inline">\bm{{D}}_{c, m} \in [0, 1]</span>.</p>
+</section>
+<section class="slide level2 scrollable">
+
+<h3 id="computation-1">Computation</h3>
+<ol type="1">
+<li>Initialize archetypes</li>
+<li>Loop until error reduction is sufficiently small:
+<ol type="1">
+<li>Optimize <span class="math inline">\bm{A}</span> as in AA.</li>
+<li>Optimize <span class="math inline">\bm{D}</span> as in AA.</li>
+<li>Update archetypes, i.e.&nbsp;<span class="math inline">\bm{Z} = \bm{A}^{-1} \bm{X} \bm{D}^{-1}</span>.</li>
+<li>Optimize <span class="math inline">\bm{B}</span> as in AA.</li>
+<li>Optimize <span class="math inline">\bm{C}</span> as in AA.</li>
+<li>Update archetypes, i.e.&nbsp;<span class="math inline">\bm{Z} = \bm{B}\bm{X}\bm{C}</span>.</li>
+<li>Compute error <span class="math inline">\|{\bm{X} - \bm{A}\bm{B}\bm{X}\bm{C}\bm{D}}\|^2_F</span>.</li>
+</ol></li>
+</ol>
 </section>
 <section id="exemple" class="slide level2">
 <h2>Exemple</h2>
-<p>Consider the following dataset representing a set of colors where axis <span class="math inline">\(X\)</span> represents the hue and axis <span class="math inline">\(Y\)</span> the brightness:</p>
+<p>Consider the following dataset representing a set of colors where axis <span class="math inline">X</span> represents the hue and axis <span class="math inline">Y</span> the brightness:</p>
 
 <img data-src="slides_files/figure-revealjs/cell-8-output-1.svg" class="quarto-figure quarto-figure-center r-stretch"><p>Q: Which archetypes do you think we will obtain from this dataset?</p>
 </section>
@@ -489,13 +699,13 @@ Aleix Alcacer Sales
 <div>
 
 </div>
-<div id="4f5847c0" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="2">
+<div id="6dcbbdbd" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="slides_files/figure-revealjs/cell-9-output-1.svg"></p>
-<figcaption><br> Archetypal Analysis with 2 archetypes in <span class="math inline">\(Y\)</span> axis</figcaption>
+<figcaption><br> Archetypal Analysis with 2 archetypes in <span class="math inline">Y</span> axis</figcaption>
 </figure>
 </div>
 </div>
@@ -503,7 +713,7 @@ Aleix Alcacer Sales
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="slides_files/figure-revealjs/cell-9-output-2.svg"></p>
-<figcaption>Archetypal Analysis with 3 archetypes in <span class="math inline">\(X\)</span> axis</figcaption>
+<figcaption>Archetypal Analysis with 3 archetypes in <span class="math inline">X</span> axis</figcaption>
 </figure>
 </div>
 </div>
@@ -511,18 +721,61 @@ Aleix Alcacer Sales
 </div>
 </div>
 <div class="fragment">
-<div id="e37e0058" class="cell" data-execution_count="9">
+<div id="cdb00d47" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="slides_files/figure-revealjs/cell-10-output-1.svg"></p>
-<figcaption>Biarchetypal Analysis with 2 archetypes in <span class="math inline">\(Y\)</span> axis and 3 archetypes in <span class="math inline">\(X\)</span> axis</figcaption>
+<figcaption>Biarchetypal Analysis with 2 archetypes in <span class="math inline">Y</span> axis and 3 archetypes in <span class="math inline">X</span> axis</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section></section>
+<section>
+<section id="python-package" class="title-slide slide level1 center">
+<h1>Python Package</h1>
+
+</section>
+<section id="archetypes-package" class="slide level2">
+<h2><code>archetypes</code> package</h2>
+
+<p><code>archetypes</code> is a Python package offering a user-friendly and efficient implementation of state-of-the-art techniques for Archetypal Analysis (AA).</p>
+<ul>
+<li>Implements multiple archetype initialization algorithms.</li>
+<li>Supports a variety of AA algorithms.</li>
+<li>Provides multiple backends, including numpy, jax, and torch.</li>
+<li>Runs seamlessly on both CPU and GPU.</li>
+<li>Integrates diverse visualization tools for enhanced result interpretation.</li>
+<li>Fully open-source and community-driven project.</li>
+</ul>
+<aside><div>
+<p><a href="https://archetypes.readthedocs.io/">https://archetypes.readthedocs.io/</a></p>
+</div></aside></section>
+<section class="slide level2">
+
+<h3 id="example-1">Example</h3>
+<div id="e9428ffd" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">from</span> archetypes <span class="im">import</span> AA</span>
+<span id="cb1-2"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href=""></a></span>
+<span id="cb1-5"><a href=""></a><span class="co"># Create a dataset with 1000 samples</span></span>
+<span id="cb1-6"><a href=""></a>generator <span class="op">=</span> np.random.default_rng(<span class="dv">123</span>)</span>
+<span id="cb1-7"><a href=""></a>X <span class="op">=</span> generator.uniform(size<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">2</span>))</span>
+<span id="cb1-8"><a href=""></a></span>
+<span id="cb1-9"><a href=""></a><span class="co"># Fit an AA model with 3 archetypes</span></span>
+<span id="cb1-10"><a href=""></a>aa <span class="op">=</span> AA(n_archetypes<span class="op">=</span><span class="dv">4</span>, random_state<span class="op">=</span><span class="dv">123</span>).fit(X)</span>
+<span id="cb1-11"><a href=""></a></span>
+<span id="cb1-12"><a href=""></a><span class="co"># Plot the data and the prototypes</span></span>
+<span id="cb1-13"><a href=""></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-14"><a href=""></a>ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb1-15"><a href=""></a>ax.scatter(aa.archetypes_[:, <span class="dv">0</span>], aa.archetypes_[:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">'red'</span>, s<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb1-16"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/cell-11-output-1.svg" class="quarto-figure quarto-figure-center r-stretch"></section></section>
 <section>
 <section id="conclusions" class="title-slide slide level1 center">
 <h1>Conclusions</h1>
@@ -535,10 +788,8 @@ Aleix Alcacer Sales
 <li>Archetypal Analysis is a technique used to find extreme points (archetypes) in a dataset.</li>
 <li>The prototypes obtained by Archetypal Analysis often offers more interpretable results than clustering.</li>
 <li>Biarchetypal Analysis is an extension of Archetypal Analysis that allows to find archetypes in two dimensions simultaneously.</li>
+<li>There is a Python package called <code>archetypes</code> that makes it easy to compute archetypes.</li>
 </ul>
-</section>
-<section id="future-work" class="slide level2">
-<h2>Future work</h2>
 </section>
 <section id="main-references" class="slide level2">
 <h2>Main References</h2>
@@ -548,14 +799,11 @@ Aleix Alcacer Sales
 <li>Mørup, M., &amp; Hansen, L. K. (2012). Archetypal analysis for machine learning and data mining. Neurocomputing, 80, 54–63. https://doi.org/10.1016/j.neucom.2011.06.033</li>
 </ul>
 </section>
-<section id="acknowledgements" class="slide level2">
-<h2>Acknowledgements</h2>
-</section>
 <section id="thank-you" class="slide level2 center">
 <h2>Thank you ❤️</h2>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
-<p>Archetypal Analysis</p>
+<p>Archetypal Analysis: Characterizing data by “extremes”</p>
 </div>
 </div>
 </section></section>
@@ -575,7 +823,6 @@ Aleix Alcacer Sales
   <script src="slides_files/libs/revealjs/plugin/notes/notes.js"></script>
   <script src="slides_files/libs/revealjs/plugin/search/search.js"></script>
   <script src="slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="slides_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -742,27 +989,9 @@ Aleix Alcacer Sales
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

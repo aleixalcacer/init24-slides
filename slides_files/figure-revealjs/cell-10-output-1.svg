@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2024-10-11T13:15:02.550768</dc:date>
+    <dc:date>2024-10-15T11:06:10.673462</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -29,14 +29,14 @@ z
 " style="fill: #ffffff"/>
   </g>
   <g id="axes_1">
-   <g clip-path="url(#p4e3d0952f4)">
+   <g clip-path="url(#p4d89442e49)">
     <image xlink:href="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAFkAAAA8CAYAAAANMhZGAAAAuklEQVR4nO3SQRECAQwEwRyFkbOBKaQiAgd87gkuOg+mDWxlKsc1850Fj8tvvs6F0Zm5raz+mSIDRQaKDBQZKDJQZKDIQJGBIgNFBooMFBkoMlBkoMhAkYEiA0UGigwUGSgyUGSgyECRgSIDRQaKDBQZuD+Xht8bw5+da/tkoMhAkYEiA0UGigwUGSgyUGSgyECRgSIDRQaKDBQZKDJQZKDIQJGBIgNFBooMFBkoMlBkoMhAkYEiA0UGfiCoCKpTQQ8GAAAAAElFTkSuQmCC" id="imagef04052e918" transform="scale(1 -1) translate(0 -45)" x="7.2" y="-6.552" width="66.75" height="45"/>
+iVBORw0KGgoAAAANSUhEUgAAAFkAAAA8CAYAAAANMhZGAAAAuklEQVR4nO3SQRECAQwEwRyFkbOBKaQiAgd87gkuOg+mDWxlKsc1850Fj8tvvs6F0Zm5raz+mSIDRQaKDBQZKDJQZKDIQJGBIgNFBooMFBkoMlBkoMhAkYEiA0UGigwUGSgyUGSgyECRgSIDRQaKDBQZuD+Xht8bw5+da/tkoMhAkYEiA0UGigwUGSgyUGSgyECRgSIDRQaKDBQZKDJQZKDIQJGBIgNFBooMFBkoMlBkoMhAkYEiA0UGfiCoCKpTQQ8GAAAAAElFTkSuQmCC" id="image1710d1f629" transform="scale(1 -1) translate(0 -45)" x="7.2" y="-6.552" width="66.75" height="45"/>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p4e3d0952f4">
+  <clipPath id="p4d89442e49">
    <rect x="7.2" y="7.2" width="66.528" height="44.352"/>
   </clipPath>
  </defs>
