@@ -16,6 +16,11 @@ format:
         toc: true
         preview-links: auto
         footer: "Archetypal Analysis: Characterizing data by \"extremes\""
+        title-slide-attributes:
+            data-background-image: static/background.png
+            data-background-size: cover
+            data-background-opacity: "0.2"
+        
 ---
 
 # Introduction
@@ -175,11 +180,15 @@ where  $\|{\bm{{A}}_n}\|_1 = 1$, $\bm{{A}}_{n,k} \in [0, 1]$, $\|{\bm{B}_k}\|_1 
 - The goal is to find groups of data points that are similar to each other and dissimilar to data points in other clusters.
 - The prototypes of the clusters are the centroids of them.
 
+<br>
+
+::: {.fragment}
+
 | Property | Clustering | Archetypal Analysis |
 |----------|------------|---------------------|
 | Goal | Group similar data points | Find extreme points |
 | Prototypes | Centroids | Extreme points |
-
+:::
 
 ## Example
 
