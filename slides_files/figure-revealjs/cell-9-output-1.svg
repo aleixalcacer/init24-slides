@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2024-10-15T11:06:08.434223</dc:date>
+    <dc:date>2024-10-16T10:28:10.671330</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -29,14 +29,14 @@ z
 " style="fill: #ffffff"/>
   </g>
   <g id="axes_1">
-   <g clip-path="url(#p7b4a6b75d8)">
+   <g clip-path="url(#p343bf28e54)">
     <image xlink:href="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAlQAAAA8CAYAAACgoCQ3AAABrUlEQVR4nO3YwU1WQQCF0cElbDGBjdYgZWgfdAhlYA26kUS36hKL+BY38T+ngZtJZvK+vKu/57ydhc+T1c3u6Kwv95vd583sbPfruRusrh7Ql9Hu6LyrS/U02Byd9dPrZveSPkHnnPNwfgxWL+tr8G6yCgDwHxFUAACRoAIAiAQVAEAkqAAAIkEFABAJKgCASFABAESCCgAgElQAAJGgAgCIBBUAQCSoAAAiQQUAEAkqAIBIUAEARIIKACASVAAAkaACAIgEFQBAJKgAACJBBQAQCSoAgEhQAQBEggoAIBJUAACRoAIAiAQVAEAkqAAAoqvHc94myx8mq+d8HGyOzvrzZrP7fTN7vo12f53rweolPaDh7upSLXZHD/f2z2Z3dZNXL/f9+T1YvayvgT9UAACRoAIAiAQVAEAkqAAAIkEFABAJKgCASFABAESCCgAgElQAAJGgAgCIBBUAQCSoAAAiQQUAEAkqAIBIUAEARIIKACASVAAAkaACAIgEFQBAJKgAACJBBQAQCSoAgEhQAQBEggoAIBJUAACRoAIAiAQVAEAkqAAAIkEFABD9AxAQGjpICzVFAAAAAElFTkSuQmCC" id="image427a067953" transform="scale(1 -1) translate(0 -45)" x="7.2" y="-6.84" width="447" height="45"/>
+iVBORw0KGgoAAAANSUhEUgAAAlQAAAA8CAYAAACgoCQ3AAABrUlEQVR4nO3YwU1WQQCF0cElbDGBjdYgZWgfdAhlYA26kUS36hKL+BY38T+ngZtJZvK+vKu/57ydhc+T1c3u6Kwv95vd583sbPfruRusrh7Ql9Hu6LyrS/U02Byd9dPrZveSPkHnnPNwfgxWL+tr8G6yCgDwHxFUAACRoAIAiAQVAEAkqAAAIkEFABAJKgCASFABAESCCgAgElQAAJGgAgCIBBUAQCSoAAAiQQUAEAkqAIBIUAEARIIKACASVAAAkaACAIgEFQBAJKgAACJBBQAQCSoAgEhQAQBEggoAIBJUAACRoAIAiAQVAEAkqAAAoqvHc94myx8mq+d8HGyOzvrzZrP7fTN7vo12f53rweolPaDh7upSLXZHD/f2z2Z3dZNXL/f9+T1YvayvgT9UAACRoAIAiAQVAEAkqAAAIkEFABAJKgCASFABAESCCgAgElQAAJGgAgCIBBUAQCSoAAAiQQUAEAkqAIBIUAEARIIKACASVAAAkaACAIgEFQBAJKgAACJBBQAQCSoAgEhQAQBEggoAIBJUAACRoAIAiAQVAEAkqAAAIkEFABD9AxAQGjpICzVFAAAAAElFTkSuQmCC" id="image238d6cd4d7" transform="scale(1 -1) translate(0 -45)" x="7.2" y="-6.84" width="447" height="45"/>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p7b4a6b75d8">
+  <clipPath id="p343bf28e54">
    <rect x="7.2" y="7.2" width="446.4" height="44.64"/>
   </clipPath>
  </defs>
